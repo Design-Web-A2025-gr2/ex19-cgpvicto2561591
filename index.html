@@ -17,60 +17,65 @@
 
         <!-- Source : https://github.com/dropbox/zxcvbn -->
         <!-- https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation -->
-        <script src="assets/js/zxcvbn.js"></script>
+        <!-- <script src="assets/js/zxcvbn.js"></script> -->
 
         <script defer src="assets/js/script.js"></script>
 
     </head>
 
     <body>
+        <button id="tester" >tester</button>
 
         <main>
 
             <h1>Réinitialisation de votre mot de passe</h1>
 
-            <form action="#" method="post" id="form-password">
+            <form action="#" method="get" id="form-password">
                 <div class="entete-formulaire">
 
+
+                    <!-- Premiere confirmation du mot de pass vérification du changement dans le text  -->
                     <div class="zone-input">
                         <div class="ligne-input line-password">
                             <label for='password'>Nouveau mot de passe</label>
-                            <input type='password' id='password' name='password'>
+                            <input type='password' id='password' name='password' value="">
                             <div class="password-meter">
                                 <div class="password-meter-unit"></div>
                                 <div class="password-meter-unit"></div>
                                 <div class="password-meter-unit"></div>
                                 <div class="password-meter-unit"></div>
-                                <div class="password-meter-unit"></div>
+                                <div class="password-meter-unit"></div> 
                             </div>
                         </div>
-                        
+                        <!-- confirmation du mot de passe numéro 2 -->
                         <div class="ligne-input line-confirm-password">
                             <label for='confirm-password'>Confirmer votre mot de passe</label>
                             <input type='password' id='confirm-password' name='confirm-password'>
                             <div class="message-erreur hidden invalide">Le mot de passe est différent</div>  
                         </div>    
                     </div>
-    
+                    
+
+
+                    <!-- affichage a droit  -->
                     <div class="message-validation">
                         <div class="message validation-longueur">
-                            <i class="fas"></i> 
+                            <i id="icon-lenght" class="fas "></i> 
                             Le mot de passe doit contenir au minimum 8 caractères
                         </div>
                         
                         <div class="message validation-majuscule">
-                            <i class="fas"></i> 
+                            <i id="icon-Maj" class="fas fa-check"></i> 
                             Le mot de passe doit contenir au moins une majuscule et une minuscule
                         </div>
 
                         <div class="message validation-caractere">
-                            <i class="fas"></i> 
+                            <i id="icon-spé" class="fas fa-check"></i> 
                             Le mot de passe doit contenir un caractère spécial
                         </div>
-                    </div>
-
+                    </div> 
+                    
                 </div>
-
                 <button class="bouton-soumettre" type="submit">Réinitialiser</button>
             </form>
 
