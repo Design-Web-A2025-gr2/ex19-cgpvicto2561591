@@ -96,3 +96,9 @@ main {
     background-color: var(--couleur-bouton-hover);
 }
 
+.greenlight{
+    color:greenyellow;
+}
+.redlight{
+    color: tomato;
+}
