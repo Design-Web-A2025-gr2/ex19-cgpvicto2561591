@@ -12,7 +12,6 @@
 
 const passwordInput1 = document.getElementById('password');
 const passwordInput2 = document.getElementById('confirm-password');
-const  buttonSubmit = document.getElementsByClassName('bouton-soumettre');
 const buttonTester = document.getElementById('tester');
 const messageErreur = document.querySelector('.message-erreur');
 
@@ -34,6 +33,18 @@ const testclasselement = document.querySelectorAll('.message');
     const firstElement = testclasselement[0];
     const secondElement = testclasselement[1];
     const thirdElement = testclasselement[2];
+
+
+const forcePassword = document.querySelectorAll('.password-meter-unit');
+let elementpass1 = forcePassword[0];
+let elementpass2 = forcePassword[1];
+let elementpass3 = forcePassword[2];
+let elementpass4 = forcePassword[3];
+let elementpass5 = forcePassword[4];
+let compteurForce = 0;
+let boolforce = false;
+const buttonsubmit = document.querySelector('.bouton-soumettre');
+
 // comprendre le regex.test
 // const regexMot = /Bonjour/;
 // const chaine1 = "Bonjour le monde !";
@@ -41,22 +52,89 @@ const testclasselement = document.querySelectorAll('.message');
 
 // console.log(regexMot.test(chaine1)); // true
 // console.log(regexMot.test(chaine2)); // false
-
+elementpass1.classList.add('hidden');
+elementpass2.classList.add('hidden');
+elementpass3.classList.add('hidden');
+elementpass4.classList.add('hidden');
+elementpass5.classList.add('hidden');
 
 
 //test check 
 
-    secondElement.classList.add('greenlight');
-    secondElement.classList.remove('redlight');
-
-    secondElement.classList.remove('greenlight');
-    secondElement.classList.add('redlight');
+    
 
 
 
 
 
 // function
+
+function calculateForce(){
+    compteurForce = 1;
+    if (verifyLength) {
+        compteurForce += 1;
+    }
+    if(verifymaj)
+    {
+        compteurForce += 1;
+    }
+    if(verifyminu)
+    {
+        compteurForce += 1;
+    }
+    if(verifyspecial)
+    {
+        compteurForce += 1;
+    }
+
+    if(compteurForce <= 2)
+    {
+     
+     forcePassword.forEach(element => {
+  element.style.backgroundColor = '#bd0000ff'; 
+});
+elementpass1.classList.remove('hidden');
+elementpass2.classList.remove('hidden');
+elementpass3.classList.add('hidden');
+elementpass4.classList.add('hidden');
+elementpass5.classList.add('hidden');
+
+    }
+    else if(compteurForce === 3)
+    {
+            forcePassword.forEach(element => {
+    element.style.backgroundColor = '#d76d03ff'; 
+    });
+    elementpass3.classList.remove('hidden');
+    elementpass4.classList.add('hidden');
+    elementpass5.classList.add('hidden');
+        }
+        else if(compteurForce === 4)
+        {
+            forcePassword.forEach(element => {
+     element.style.backgroundColor = '#fdf629ff'; 
+      });
+      elementpass4.classList.remove('hidden');
+     elementpass5.classList.add('hidden');
+        }
+        else if(compteurForce === 5)
+        {
+            forcePassword.forEach(element => {
+      element.style.backgroundColor = '#a3d900ff'; 
+      });
+     elementpass5.classList.remove('hidden');
+     boolforce = true;
+
+        }
+    }
+   
+
+
+
+
+
+
+
 
         // const isValid = req.regex.test(password);
 
@@ -150,7 +228,7 @@ function iconappear(){
             thirdElement.classList.add('greenlight');
             thirdElement.classList.remove('redlight');
         }
-        else if(!verifcaraspecial)
+    else
             {
                 let iconspecial = document.getElementById('icon-spé');
                 iconspecial.classList.add('fa-ban');
@@ -160,9 +238,18 @@ function iconappear(){
             }
     }
 
-    
-
-
+    // function button submit
+    function PassOuCass(event){
+        if(boolforce && verif)
+        {
+            console.log("fonctionnel");
+             buttonsubmit.removeEventListener('click', PassOuCass);
+        }
+        else{
+            event.preventDefault();
+        }
+    }
+// valider la mots de pass
 function validatePasswordMatch() {
     const password1 = passwordInput1.value;
     const password2 = passwordInput2.value;
@@ -188,7 +275,7 @@ function validatePasswordMatch() {
 
 //actions 
 
-passwordInput2.addEventListener("keyup",validatePasswordMatch);
+
 passwordInput1.addEventListener("keyup", function() {
     validateLength();
     validateUppercase();
@@ -196,5 +283,13 @@ passwordInput1.addEventListener("keyup", function() {
     validateSpecialCharacter();
     iconappear();
     validatePasswordMatch();
+    calculateForce();
     
 });
+passwordInput2.addEventListener("keyup",validatePasswordMatch);
+
+buttonsubmit.addEventListener("click", PassOuCass);
+
+   
+
+
